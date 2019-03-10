@@ -1,0 +1,60 @@
+.app {
+  padding: 0 20px;
+  color: #222;
+}
+
+.app-container {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.footer {
+  padding: 10px 0;
+}
+
+.encounter-details {
+  padding: 15px 15px 30px;
+  margin-top: 20px;
+
+  border: 1px solid #ccc;
+  border-radius: 3px;
+
+  box-shadow: 1px 1px 1px rgba(0,0,0, 0.2);
+}
+
+.encounter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.encounter-delete {
+  font-size: 80%;
+}
+
+.encounter-heading {
+  margin: 0;
+  flex-grow: 1;
+  font-size: 1.6em;
+  text-transform: capitalize;
+}
+
+.encounter-subheading {
+  margin: .5em 0 1em;
+  color: #666;
+  font-weight: 100;
+  font-size: 1.1em;
+}
+
+.encounter-monsters {
+  padding-inline-start: 20px;
+  margin: 0;
+}
+
+.encounter-monster {
+  list-style: circle; 
+}

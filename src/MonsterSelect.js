@@ -1,0 +1,37 @@
+import React, { Component } from 'react';
+import Select from 'react-select';
+
+import * as api from './api';
+
+class MonsterSelect extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      monsterSets: [],
+    };
+  }
+
+  componentDidMount() {
+    api.getMonsterSets().then((monsterSets) => {
+      this.setState({
+        monsterSets: monsterSets.map((set) => ({label: set, value: set}))
+      });
+    })
+  }
+
+  render() {
+    return (
+      <Select
+        isClearable
+        isSearchable
+        isMulti
+        options={this.state.monsterSets}
+        onChange={this.props.onChange}
+      />
+    )
+  }
+
+}
+
+export default MonsterSelect;
