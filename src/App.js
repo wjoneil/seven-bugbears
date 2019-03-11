@@ -34,11 +34,13 @@ class App extends Component {
     };
   }
 
-  handleCharacterChange = (value, { action }) => {
-    if (action === 'clear') {
-      this.setState( { characters: [] } );
+  handleCharacterChange = (value) => {
+    if (!value) {
+      this.setState({
+        characters: []
+      });
     } else {
-      this.setState((state, props) => (
+      this.setState(state => (
         {
           characters: [...state.characters, value]
         }
@@ -70,7 +72,10 @@ class App extends Component {
 
         return {encounterList, encounters};
       });
-    })
+    }, (error) => {
+      //TODO: handle errors
+      console.error(error);
+    });
   }
 
   handleDeleteEncounter = (encounterId) => () => {
@@ -92,24 +97,18 @@ class App extends Component {
     return (
       <div className="app">
         <div className="app-container">
-          <header>
-            <h1>D&D Encounters</h1>
-          </header>
-          <section>
+          <section className="encounter-form">
+            <header>
+              <h1>D&D Encounters</h1>
+            </header>
             <div className="field">
-              <label>
-                Character Levels
-                <CharacterSelect 
-                  characters={characters} 
-                  onChange={this.handleCharacterChange} 
-                />
-              </label>
+              <CharacterSelect 
+                characters={characters} 
+                onChange={this.handleCharacterChange} 
+              />
             </div>
             <div className="field">
-              <label>
-                Monster Sets
-                <MonsterSelect onChange={this.handleMonsterChange} />
-              </label>
+              <MonsterSelect onChange={this.handleMonsterChange} />
             </div>
             <footer className="footer">
               <button className="pure-button pure-button-primary" onClick={this.handleEncounterSubmit}>

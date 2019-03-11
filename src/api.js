@@ -21,10 +21,7 @@ export const getMonsterSets = () => {
 } 
 
 export const getEncounter = (characterLevels, monsterSets) => {
-  const levelsQueryValue = characterLevels
-    .map((item) => item.value)
-    .join(',');
-  const levelsQuery = `character_levels=${levelsQueryValue}`;
+  const levelsQuery = `character_levels=${characterLevels.join(',')}`;
   const monstersQuery = `monster_sets=${monsterSets.join(',')}`;
   const queryString = [levelsQuery, monstersQuery].join('&');
   return fetch(`${baseURL}/encounter?${queryString}`)

@@ -22,13 +22,19 @@ class MonsterSelect extends Component {
 
   render() {
     return (
-      <Select
-        isClearable
-        isSearchable
-        isMulti
-        options={this.state.monsterSets}
-        onChange={this.props.onChange}
-      />
+      <>
+        <label className="field-label" htmlFor="monster-select">
+          Monster Sets
+        </label>
+        <Select
+          id={"monster-select"}
+          isClearable
+          isSearchable
+          isMulti
+          options={this.state.monsterSets}
+          onChange={this.props.onChange}
+        />
+      </>
     )
   }
 
