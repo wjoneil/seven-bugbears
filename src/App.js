@@ -105,8 +105,8 @@ class App extends Component {
         <div className="app-container">
           <section className="encounter-form-wrapper">
             <div className="encounter-form">
-              <header>
-                <h1 className="encounter-form-title">D&D Encounters</h1>
+              <header className="app-header">
+                <h1 className="app-title">D&D Encounters</h1>
               </header>
               <div className="field">
                 <CharacterSelect 

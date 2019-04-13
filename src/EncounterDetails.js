@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { pluralise } from './chilly-bin';
+import Spacer from './spacer';
 
 const DeleteEncounter = ({onClick}) => {
   return (
@@ -27,6 +28,7 @@ const EncounterDetails = ({encounter, onClick}) => {
         </header>
         <div className="encounter-subheading">{xp_value} xp — {difficulty} encounter</div>
       </div>
+      <Spacer />
       <ul className="encounter-monsters">
       {
         monsters.map((monster) => {

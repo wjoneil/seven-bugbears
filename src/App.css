@@ -1,3 +1,26 @@
+:root {
+  --dnd-red: #bc0f0f;
+
+  --border: 1px solid hsl(0,0%,70%);
+  --border-radius: 3px;
+  --shadow: 0 3px 3px rgba(0,0,0, 0.2);
+  --ui-width: 100%;
+  --encounter-list-columns: 1fr;
+
+  --serif-font-stack: Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif;
+  --heading-color: #49111C; /*#822000*/
+  --heading-border-color: #B38600;
+
+}
+
+@media only screen and (min-width: 920px) {
+  :root {
+    --ui-width: 520px;
+    --encounter-list-columns: var(--ui-width) var(--ui-width);
+  }
+}
+
+
 * {
   box-sizing: border-box;
 }
@@ -7,43 +30,32 @@ body {
   background-color: #ddd;
 }
 
-@media only screen and (min-width: 920px) {
-  .app-container {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: min-content 1fr;
-  }
+.encounter-form-wrapper {
+  display: flex;
+  justify-content: center;
 
-  .app-container section {
-    width: 460px;
-  }
+  padding: 20px 30px;
+  background-color: #fff;
+
+  border-bottom: var(--border);
+  box-shadow: var(--shadow);
+
+  /* position: -webkit-sticky;
+  position: sticky;
+  top: 0; */
 }
 
 .encounter-form {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-
-  padding: 30px 30px 20px;
-  background-color: #fff;
-
-  border-bottom: 1px solid hsl(0,0%,70%);
-  box-shadow: 1px 1px 1px rgba(0,0,0, 0.2);
+  width: var(--ui-width);
 }
 
-@media only screen and (min-width: 920px) {
-  .encounter-form {
-    border-right: 1px solid hsl(0,0%,70%);
-    border-bottom-right-radius: 3px;
-    
-
-    padding-bottom: 100px;
-  }
-}
-
-.encounter-form-title {
+.app-title {
   margin: 0;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
+
+  font-family: var(--serif-font-stack);
+  font-feature-settings: "smcp" on;
+  color: var(--heading-color);
 }
 
 .field {
@@ -51,8 +63,17 @@ body {
 }
 
 .field-label {
-  font-weight: 500;
-  line-height: 1.5em;
+  font-size: 1.05em;
+  font-weight: 700;
+  font-family: var(--serif-font-stack);
+  font-feature-settings: "smcp" on;
+  color: var(--heading-color);
+
+  display: block;
+  width: 100%;
+  border-bottom: 2px solid var(--heading-border-color);
+  padding-bottom: 0.1em;
+  margin-bottom: 0.5em;
 }
 
 .character-select-control {
@@ -68,23 +89,23 @@ body {
 }
 
 .encounter-list {
-  padding-bottom: 40px;
-}
+  padding: 20px 10px 40px;
 
-@media only screen and (max-width: 920px) {
-  .encounter-details {
-    margin: 20px 10px;
-  }
+  display: grid;
+  grid-template-columns: var(--encounter-list-columns);
+  grid-template-rows: auto;
+  justify-content: center;	
+  gap: 15px 10px;
+
 }
 
 .encounter-details {
   padding: 15px 15px 30px;
-  margin-top: 20px;
   background-color: #fff;
 
-  border: 1px solid hsl(0,0%,70%);
-  border-radius: 3px;
-  box-shadow: 1px 1px 1px rgba(0,0,0, 0.2);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
 }
 
 .encounter-header {
@@ -99,13 +120,17 @@ body {
 
 .encounter-heading {
   margin: 0;
+  margin-bottom: 0.2em;
   flex-grow: 1;
   font-size: 1.6em;
   text-transform: capitalize;
+  font-family: var(--serif-font-stack);
+  font-feature-settings: "smcp" on;
+  color: var(--heading-color);
 }
 
 .encounter-subheading {
-  margin: .5em 0 1em;
+  margin-bottom: .5em;
   color: #666;
   font-weight: 100;
   font-size: 1.1em;
@@ -118,4 +143,15 @@ body {
 
 .encounter-monster {
   list-style: circle; 
+}
+
+.pure-button-primary {
+  background-color: #221111;
+}
+
+.dnd-spacer {
+  width: 100%;
+  height: 6px;
+  fill: var(--dnd-red);
+  margin-bottom: 1em;
 }
