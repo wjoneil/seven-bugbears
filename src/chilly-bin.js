@@ -6,3 +6,7 @@ export const pluralise = (name, number) => {
   }
   return number === 1 ? name : plural;
 }
+
+export const handleCallback = (callback, value) => () => callback(value);
+
+export const noop = () => {};

@@ -34,15 +34,15 @@ class App extends Component {
     };
   }
 
-  handleCharacterChange = (value) => {
-    if (!value) {
+  handleCharacterChange = (character) => {
+    if (!character) {
       this.setState({
         characters: []
       });
     } else {
       this.setState(state => (
         {
-          characters: [...state.characters, value]
+          characters: [...state.characters, character.value]
         }
       ));
     }
@@ -57,12 +57,18 @@ class App extends Component {
   handleEncounterSubmit = () => {
     const { characters, monsterSets } = this.state;
 
-    if (!characters.length || !monsterSets.length) {
+    //TODO: display these errors
+    if (!characters.length) {
+      console.error("Party is empty");
+      return false;
+    }
+    if (!monsterSets.length) {
+      console.error("Select some monsters to encounter");
       return false;
     }
     api.getEncounter(characters, monsterSets).then((encounter) => {
       if (!encounter.success) {
-        //TODO: alert the user that the encounter didn't generate
+        console.error("Encounter api call failed");
         return false;
       }
       encounter.id = uuid();
@@ -73,7 +79,7 @@ class App extends Component {
         return {encounterList, encounters};
       });
     }, (error) => {
-      //TODO: handle errors
+      //TODO: handle errors properly
       console.error(error);
     });
   }
@@ -97,25 +103,28 @@ class App extends Component {
     return (
       <div className="app">
         <div className="app-container">
-          <section className="encounter-form">
-            <header>
-              <h1>D&D Encounters</h1>
-            </header>
-            <div className="field">
-              <CharacterSelect 
-                characters={characters} 
-                onChange={this.handleCharacterChange} 
-              />
+          <section className="encounter-form-wrapper">
+            <div className="encounter-form">
+              <header>
+                <h1 className="encounter-form-title">D&D Encounters</h1>
+              </header>
+              <div className="field">
+                <CharacterSelect 
+                  characters={characters} 
+                  onChange={this.handleCharacterChange} 
+                />
+              </div>
+              <div className="field">
+                <MonsterSelect onChange={this.handleMonsterChange} />
+              </div>
+              <footer className="footer">
+                <button className="pure-button pure-button-primary" onClick={this.handleEncounterSubmit}>
+                  Generate Encounter
+                </button>
+              </footer>
             </div>
-            <div className="field">
-              <MonsterSelect onChange={this.handleMonsterChange} />
-            </div>
-            <footer className="footer">
-              <button className="pure-button pure-button-primary" onClick={this.handleEncounterSubmit}>
-                Generate Encounter
-              </button>
-            </footer>
           </section>
+          <section className="encounter-list">
           { !!encounterList.length && encounterList.map(encounterId => (
             <EncounterDetails 
               key={encounterId}
@@ -123,7 +132,7 @@ class App extends Component {
               onClick={this.handleDeleteEncounter(encounterId)}
             />
           ))}
-          
+          </section>
         </div>
       </div>
     );

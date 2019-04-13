@@ -19,7 +19,7 @@ const EncounterDetails = ({encounter, onClick}) => {
   } = encounter;
   
   return monsters ? (
-    <section className="encounter-details">
+    <article className="encounter-details">
       <div>
         <header className="encounter-header">
           <h1 className="encounter-heading">{monster_set}</h1>
@@ -39,7 +39,7 @@ const EncounterDetails = ({encounter, onClick}) => {
         })
       }
       </ul>
-    </section>
+    </article>
   ) : null;
 }
 

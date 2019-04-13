@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Select from 'react-select';
+
+import { handleCallback, pluralise } from './chilly-bin';
 
 const levels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
-const handleOnClick = (callback, value) => {
-  return () => callback(value);
-};
+const levelsForSelect = levels.map((lvl) => ({label: `Level ${lvl}`, value: lvl}));
+
+const customStyles = {
+  container: (provided, state) => ({
+    ...provided,
+    flexGrow: 1
+  })
+}
 
 const accumulateCount = (accumulator, value) => {
   if (accumulator[value] !== undefined) {
@@ -22,49 +30,50 @@ const formatCharacterDescription = (characters) => {
     const count = entry[1];
     return (
       <li key={level}>
-        {`${count} at Level ${level}`}
+        {`${count} ${pluralise("character", count)} at Level ${level}`}
       </li>
     );
   });
-  return characters.length ? (
+  return (
     <ul className="character-select-description--entries">
-      {items}
+      {characters.length ? items : <li>Party is empty.</li>}
     </ul>
-  ) : (
-    <span>Party is empty.</span>
-  )
+    )
 }
 
-const CharacterSelect = ({characters, onChange}) => (
+const CharacterSelect = ({characters, onChange}) => {
+  const [level, setLevel] = useState(levelsForSelect[0]);
+
+  return (
   <>
     <label className="field-label" htmlFor="character-select">
       Character Levels
     </label>
-    <div id={"character-select"}>
-      <header className="character-select-heading">
-        <div className="character-select-description">
-          {formatCharacterDescription(characters)}
-        </div>
-        <button 
-          className="pure-button character-select-reset"
-          onClick={handleOnClick(onChange, null)}
-          >
-            Reset
-          </button>
-      </header>
-      <div className="character-select-control">
-        {levels.map((level) => (
-          <button 
-            key={level} 
-            className="pure-button" 
-            onClick={handleOnClick(onChange, level)}
-          >
-            {level}
-          </button>
-        ))}
-      </div>
+    <div className="character-select-control">
+      <Select
+        id={"character-select"}
+        isSearchable={false}
+        styles={customStyles}
+        options={levelsForSelect}
+        onChange={(value) => (setLevel(value))}
+        value={level}
+      />
+      <button 
+        className="pure-button pure-button-primary"
+        onClick={handleCallback(onChange, level)}
+        >
+        Add to party
+      </button>
+      <button
+        className="pure-button"
+        onClick={handleCallback(onChange, null)}
+      >
+        Reset
+      </button>
     </div>
+    {formatCharacterDescription(characters)}
   </>
-)
+  )
+}
 
 export default CharacterSelect;
