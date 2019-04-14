@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 
-import { handleCallback, pluralise } from './chilly-bin';
+import { handleCallback, pluralise, themeReactSelect } from './chilly-bin';
 
 const levels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
@@ -57,6 +57,7 @@ const CharacterSelect = ({characters, onChange}) => {
         options={levelsForSelect}
         onChange={(value) => (setLevel(value))}
         value={level}
+        theme={themeReactSelect}
       />
       <button 
         className="pure-button pure-button-primary"

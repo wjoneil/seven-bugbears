@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 
 import * as api from './api';
+import { themeReactSelect } from './chilly-bin';
 
 class MonsterSelect extends Component {
 
@@ -33,6 +34,7 @@ class MonsterSelect extends Component {
           isMulti
           options={this.state.monsterSets}
           onChange={this.props.onChange}
+          theme={themeReactSelect}
         />
       </>
     )

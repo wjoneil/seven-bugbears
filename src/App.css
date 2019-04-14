@@ -24,7 +24,7 @@
   --card-background: #fff;
   --text-color: #222;
 
-  --primary: #211;
+  --primary: #221111;
 
 }
 
@@ -172,10 +172,3 @@ body {
   fill: var(--dnd-red);
   margin-bottom: 1em;
 }
-
-/* todo: 
-
-* theme react-selects
-* add loot
-
-*/
