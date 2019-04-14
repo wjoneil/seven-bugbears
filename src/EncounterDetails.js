@@ -29,18 +29,23 @@ const EncounterDetails = ({encounter, onClick}) => {
         <div className="encounter-subheading">{xp_value} xp — {difficulty} encounter</div>
       </div>
       <Spacer />
-      <ul className="encounter-monsters">
-      {
-        monsters.map((monster) => {
-          const { name, number } = monster;
-          return (
-            <li className="encounter-monster" key={monster.name}>
-              {number} {`${pluralise(name, number)}`}
-            </li>
-          );
-        })
-      }
-      </ul>
+      <section>
+        {/* <header className="encounter-section-header">
+          <h2 className="encounter-section-heading">Monsters</h2>
+        </header> */}
+        <ul className="encounter-monsters">
+        {
+          monsters.map((monster) => {
+            const { name, number } = monster;
+            return (
+              <li className="encounter-monster" key={monster.name}>
+                {number} {`${pluralise(name, number)}`}
+              </li>
+            );
+          })
+        }
+        </ul>
+      </section>
     </article>
   ) : null;
 }

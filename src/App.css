@@ -4,7 +4,7 @@
   --dnd-red: #bc0f0f;
   --dark-red: #49111C;
   --gold: #B38600;
-  --brown: #5E503F;
+  --brown: #3B322C;
   --pale-brown: #B7A99D;
   --mid-grey: #666666;
 
@@ -24,7 +24,7 @@
   --card-background: #fff;
   --text-color: #222;
 
-  --primary: #221111;
+  --primary: #241715;
 
 }
 
@@ -78,7 +78,7 @@ body {
 }
 
 .field-label {
-  font-size: 1.05em;
+  font-size: 1.2em;
   font-weight: 700;
   font-family: var(--serif-font-stack);
   /* something in the post-processing makes font-variant use all-small-caps */
@@ -139,7 +139,7 @@ body {
   margin: 0;
   margin-bottom: 0.2em;
   flex-grow: 1;
-  font-size: 1.6em;
+  font-size: 1.8em;
   text-transform: capitalize;
   font-family: var(--serif-font-stack);
   font-feature-settings: "smcp" on;
@@ -152,6 +152,19 @@ body {
   font-weight: 100;
   font-size: 1.1em;
 }
+
+/* .encounter-section-header {
+  border-bottom: 1px solid var(--heading-color);
+  margin-bottom: 0.5em;
+}
+
+.encounter-section-heading {
+  margin: 0;
+  font-size: 1.4em;
+  font-weight: 500;
+  font-feature-settings: "smcp" on;
+  color: var(--heading-color);
+} */
 
 .encounter-monsters {
   padding-inline-start: 20px;
@@ -170,5 +183,5 @@ body {
   width: 100%;
   height: 6px;
   fill: var(--dnd-red);
-  margin-bottom: 1em;
+  margin: 0.3em 0;
 }
