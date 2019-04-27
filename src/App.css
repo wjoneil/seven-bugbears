@@ -47,6 +47,14 @@ body {
   height: 100vh;
 }
 
+abbr {
+  text-decoration: none;
+}
+
+abbr[title] {
+  border-color: var(--mint-green);
+}
+
 .encounter-form-wrapper {
   display: flex;
   justify-content: center;
@@ -157,18 +165,20 @@ body {
   font-size: 1.1em;
 }
 
-/* .encounter-section-header {
-  border-bottom: 1px solid var(--heading-color);
+.encounter-section-header {
+  /* border-bottom: 1px solid var(--heading-color); */
+  margin-top: 1em;
   margin-bottom: 0.5em;
+  
 }
 
 .encounter-section-heading {
   margin: 0;
-  font-size: 1.4em;
+  font-size: 1.3em;
   font-weight: 500;
   font-feature-settings: "smcp" on;
   color: var(--heading-color);
-} */
+}
 
 .encounter-monsters {
   padding-inline-start: 20px;

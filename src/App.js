@@ -10,6 +10,7 @@ import EncounterDetails from './EncounterDetails';
 
 const initialState = {
   characters: [],
+  selectedMonsterSet: null,
   monsterSets: [],
   encounters: {},
   encounterList: []
@@ -99,7 +100,12 @@ class App extends Component {
   }
 
   render() {
-    const { characters, encounterList, encounters } = this.state;
+    const { 
+      characters,
+      encounterList,
+      encounters,
+      selectedMonsterSet
+    } = this.state;
 
     return (
       <div className="app">
@@ -116,7 +122,9 @@ class App extends Component {
                 />
               </div>
               <div className="field">
-                <MonsterSelect onChange={this.handleMonsterChange} />
+                <MonsterSelect
+                  monsterSet={selectedMonsterSet}
+                  onChange={this.handleMonsterChange} />
               </div>
               <footer className="footer">
                 <button 

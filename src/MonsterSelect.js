@@ -22,6 +22,7 @@ class MonsterSelect extends Component {
   }
 
   render() {
+    const { selectedMonsterSet } = this.props;
     return (
       <>
         <label className="field-label" htmlFor="monster-select">
@@ -31,6 +32,7 @@ class MonsterSelect extends Component {
           id={"monster-select"}
           isClearable
           isSearchable
+          value={selectedMonsterSet}
           options={this.state.monsterSets}
           onChange={this.props.onChange}
           theme={themeReactSelect}
