@@ -8,30 +8,24 @@ import * as api from './api';
 import './App.css';
 import EncounterDetails from './EncounterDetails';
 
+const initialState = {
+  characters: [],
+  monsterSets: [],
+  encounters: {},
+  encounterList: []
+};
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      characters: [],
-      monsterSets: [],
-      encounters: {},
-      encounterList: []
-      // encounter: {
-      //   "monsters": [{
-      //     "number": 1,
-      //     "name": "Bugbear"
-      //   }, {
-      //     "number": 3,
-      //     "name": "Wolf"
-      //   }],
-      //   "difficulty": "easy",
-      //   "monster_set": "bugbears",
-      //   "xp_value": 250,
-      //   "success": true
-      // }
-    };
+    this.state = { ...initialState }
+  }
+
+  handleReset= () => {
+    this.setState(() => (
+      { ...initialState }
+    ));
   }
 
   handleCharacterChange = (character) => {
@@ -118,8 +112,17 @@ class App extends Component {
                 <MonsterSelect onChange={this.handleMonsterChange} />
               </div>
               <footer className="footer">
-                <button className="pure-button pure-button-primary" onClick={this.handleEncounterSubmit}>
+                <button 
+                  className="pure-button pure-button-primary" 
+                  onClick={this.handleEncounterSubmit}
+                >
                   Generate Encounter
+                </button>
+                <button
+                  className="pure-button"
+                  onClick={this.handleReset}
+                >
+                  Start Over
                 </button>
               </footer>
             </div>

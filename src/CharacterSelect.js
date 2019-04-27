@@ -65,12 +65,12 @@ const CharacterSelect = ({characters, onChange}) => {
         >
         Add to party
       </button>
-      <button
+      {/* <button
         className="pure-button"
         onClick={handleCallback(onChange, null)}
       >
         Reset
-      </button>
+      </button> */}
     </div>
     {formatCharacterDescription(characters)}
   </>
