@@ -30,8 +30,7 @@ class MonsterSelect extends Component {
         <Select
           id={"monster-select"}
           isClearable
-          isSearchable={false}
-          isMulti
+          isSearchable
           options={this.state.monsterSets}
           onChange={this.props.onChange}
           theme={themeReactSelect}

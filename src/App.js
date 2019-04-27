@@ -43,9 +43,16 @@ class App extends Component {
   }
 
   handleMonsterChange = (monsterSets) => {
-    this.setState(
-      { monsterSets: monsterSets.map((set) => (set.label)) }
-    );
+    if (!Array.isArray(monsterSets)) {
+      this.setState(
+        { monsterSets: [monsterSets.label] }
+      );
+    } else {
+      this.setState(
+        { monsterSets: monsterSets.map((set) => (set.label)) }
+      );
+    }
+    
   }
 
   handleEncounterSubmit = () => {
