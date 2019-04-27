@@ -16,9 +16,9 @@ export const themeReactSelect = (theme) => ({
   colors: {
     ...theme.colors,
     primary: '#72BDA3',
-    primary75: '#8BC9B3',
-    primary50: '#A5D5C4',
-    primary25: '#CBE7DD',
+    primary75: '#8DCAB4',
+    primary50: '#A7D6C6',
+    primary25: '#C2E3D7',
     danger: '#bc0f0f',
     dangerLight: '#E6A7A7'
   }

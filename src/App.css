@@ -1,11 +1,13 @@
 :root {
   --serif-font-stack: Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif;
 
+  --red-black: #241715;
   --dnd-red: #bc0f0f;
-  --dark-red: #49111C;
-  --gold: #B38600;
-  --brown: #3B322C;
-  --pale-brown: #B7A99D;
+  --dark-red: #5e1624; /*#49111C;*/
+  --mint-green: #72bda3;
+  --gold: #b38600;
+  --brown: #3b322c;
+  --pale-brown: #b7a99d;
   --mid-grey: #666666;
 
   --heading-color: var(--dark-red); /*#822000*/
@@ -24,7 +26,7 @@
   --card-background: #fff;
   --text-color: #222;
 
-  --primary: #241715;
+  --primary: var(--red-black);
 
 }
 
@@ -78,8 +80,8 @@ body {
 }
 
 .field-label {
-  font-size: 1.2em;
-  font-weight: 700;
+  font-size: 1.3em;
+  font-weight: 500;
   font-family: var(--serif-font-stack);
   /* something in the post-processing makes font-variant use all-small-caps */
   font-feature-settings: "smcp" on;
