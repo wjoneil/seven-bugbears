@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { pluralise } from './chilly-bin';
+import { pluralise, isEmpty } from './chilly-bin';
 import Spacer from './spacer';
 
 const coinTypes = [
@@ -43,7 +43,7 @@ const formatCoins = (coins) => {
     }
     return list;
   }, []);
-  return (
+  return !isEmpty(coins) && (
     <ul className="encounter-treasure-coins">
       {formattedCoins}
     </ul>
@@ -100,16 +100,20 @@ const EncounterDetails = ({encounter, onClick}) => {
           }
         </ul>
       </EncounterSection>
-      { 
-        treasure ? (
-          <EncounterSection heading="Treasure">
-            { treasure.objects && (
-              <p>{treasure.objects}</p>
-            )}
-            { formatCoins(treasure.coins) }
-          </EncounterSection>
-        ) : null 
-      }
+      <EncounterSection heading="Treasure">
+        { 
+          treasure && isEmpty(treasure.coins) && !treasure.objects && (
+            <p>None.</p>
+          )
+        }
+        { 
+          treasure.objects && (
+            <p>{treasure.objects}</p>
+          )
+        }
+        { formatCoins(treasure.coins) }
+      </EncounterSection>
+      
     </article>
   ) : null;
 }
