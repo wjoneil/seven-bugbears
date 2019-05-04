@@ -6,23 +6,28 @@ import Spacer from './spacer';
 const coinTypes = [
   {
     type: "CP",
-    description: "Copper pieces"
+    description: "Copper pieces",
+    class: 'coin-copper'
   },
   {
     type: "SP",
-    description: "Silver pieces"
+    description: "Silver pieces",
+    class: 'coin-silver'
   },
   {
     type: "EP",
-    description: "Electrum pieces"
+    description: "Electrum pieces",
+    class: 'coin-electrum'
   },
   {
     type: "GP",
-    description: "Gold pieces"
+    description: "Gold pieces",
+    class: 'coin-gold'
   },
   {
     type: "PP",
-    description: "Platinum pieces"
+    description: "Platinum pieces",
+    class: 'coin-platinum'
   },
 ]
 
@@ -31,7 +36,7 @@ const formatCoins = (coins) => {
     const value = coins[coin.type];
     if (!!value) {
       list.push(
-        <li>
+        <li key={coin.type} className={coin.class}>
           {value} <abbr title={coin.description}>{coin.type}</abbr>
         </li>
       );
@@ -39,7 +44,7 @@ const formatCoins = (coins) => {
     return list;
   }, []);
   return (
-    <ul>
+    <ul className="encounter-treasure-coins">
       {formattedCoins}
     </ul>
   )
@@ -98,6 +103,9 @@ const EncounterDetails = ({encounter, onClick}) => {
       { 
         treasure ? (
           <EncounterSection heading="Treasure">
+            { treasure.objects && (
+              <p>{treasure.objects}</p>
+            )}
             { formatCoins(treasure.coins) }
           </EncounterSection>
         ) : null 

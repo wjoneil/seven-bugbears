@@ -43,17 +43,13 @@ class App extends Component {
     }
   }
 
-  handleMonsterChange = (monsterSets) => {
-    if (!Array.isArray(monsterSets)) {
-      this.setState(
-        { monsterSets: [monsterSets.label] }
-      );
-    } else {
-      this.setState(
-        { monsterSets: monsterSets.map((set) => (set.label)) }
-      );
-    }
-    
+  handleMonsterChange = (monsterSet) => {
+    this.setState(
+      {
+        selectedMonsterSet: monsterSet,
+        monsterSets: ( !monsterSet ? [] : [monsterSet.label] ) 
+      }
+    );
   }
 
   handleEncounterSubmit = () => {
@@ -123,7 +119,7 @@ class App extends Component {
               </div>
               <div className="field">
                 <MonsterSelect
-                  monsterSet={selectedMonsterSet}
+                  selectedMonsterSet={selectedMonsterSet}
                   onChange={this.handleMonsterChange} />
               </div>
               <footer className="footer">

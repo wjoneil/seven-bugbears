@@ -10,6 +10,12 @@
   --pale-brown: #b7a99d;
   --mid-grey: #666666;
 
+  --coin-copper: #cc8251;
+  --coin-silver: #9f9f9f;
+  --coin-electrum: #e2be61;
+  --coin-gold: #c09c2e;
+  --coin-platinum: #a7e2e5;
+
   --heading-color: var(--dark-red); /*#822000*/
   --heading-border-color: var(--gold);
   --subheading-color: var(--mid-grey);
@@ -133,8 +139,12 @@ abbr[title] {
 
   border: var(--card-border);
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  box-shadow: inset 0 0 15px 5px #FFFBF4;
+  box-shadow: var(--shadow), inset 0 0 15px 5px #FFFBF4;
+}
+
+.encounter-details p {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
 }
 
 .encounter-header {
@@ -166,7 +176,6 @@ abbr[title] {
 }
 
 .encounter-section-header {
-  /* border-bottom: 1px solid var(--heading-color); */
   margin-top: 1em;
   margin-bottom: 0.5em;
   
@@ -187,6 +196,50 @@ abbr[title] {
 
 .encounter-monster {
   list-style: circle; 
+}
+
+.encounter-treasure-coins {
+  display: flex;
+  padding-inline-start: 0;
+}
+
+.encounter-treasure-coins li {
+  margin-left: 20px;
+  margin-right: 20px;
+  list-style: none;
+  position:relative;
+}
+
+.encounter-treasure-coins li:before {
+  position:absolute;
+  content: ""; 
+  left: -20px;
+  top: calc(50% - 4px);
+  width: 10px;
+  height: 10px;
+  display: block;
+  border-radius: 50%;
+  box-shadow: var(--shadow), inset 0 0 1px 1px rgba(0,0,0, 0.2);
+}
+
+.coin-copper:before {
+  background-color: var(--coin-copper);
+}
+
+.coin-silver:before {
+  background-color: var(--coin-silver);
+}
+
+.coin-electrum:before {
+  background-color: var(--coin-electrum);
+}
+
+.coin-gold:before {
+  background-color: var(--coin-gold);
+}
+
+.coin-platinum:before {
+  background-color: var(--coin-platinum);
 }
 
 .pure-button-primary {
