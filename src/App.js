@@ -17,7 +17,7 @@ const initialState = {
   monsterSets: [],
   encounters: {},
   encounterList: [],
-  showAdvanced: true
+  showAdvanced: false
 };
 
 class App extends Component {
