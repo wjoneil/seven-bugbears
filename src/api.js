@@ -20,10 +20,21 @@ export const getMonsterSets = () => {
     .then(json);
 } 
 
-export const getEncounter = (characterLevels, monsterSets) => {
-  const levelsQuery = `character_levels=${characterLevels.join(',')}`;
-  const monstersQuery = `monster_sets=${monsterSets.join(',')}`;
-  const queryString = [levelsQuery, monstersQuery].join('&');
+export const getEncounter = (data) => {
+  const {
+    characterLevels, 
+    monsterSets, 
+    difficulty
+  } = data;
+  const queries = [
+    `character_levels=${characterLevels.join(',')}`,
+    `monster_sets=${monsterSets.join(',')}`
+  ]
+  if (!!difficulty) {
+    queries.push(`difficulty=${difficulty}`);
+  }
+  
+  const queryString = queries.join('&');
   return fetch(`${baseURL}/encounter?${queryString}`)
     .then(status)
     .then(json);

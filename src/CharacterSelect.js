@@ -46,7 +46,7 @@ const CharacterSelect = ({characters, onChange}) => {
 
   return (
   <>
-    <label className="field-label" htmlFor="character-select">
+    <label className="heading-text visually-hidden" htmlFor="character-select">
       Character Levels
     </label>
     <div className="character-select-control">

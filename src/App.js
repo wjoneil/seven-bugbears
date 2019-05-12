@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import uuid from 'uuid/v4';
 import CharacterSelect from './CharacterSelect';
 import MonsterSelect from './MonsterSelect';
+import DifficultySelect from './DifficultySelect';
 
 import * as api from './api';
 
@@ -10,10 +12,12 @@ import EncounterDetails from './EncounterDetails';
 
 const initialState = {
   characters: [],
+  difficulty: "medium",
   selectedMonsterSet: null,
   monsterSets: [],
   encounters: {},
-  encounterList: []
+  encounterList: [],
+  showAdvanced: true
 };
 
 class App extends Component {
@@ -23,9 +27,22 @@ class App extends Component {
     this.state = { ...initialState }
   }
 
-  handleReset= () => {
+  handleReset = () => {
     this.setState(() => (
       { ...initialState }
+    ));
+  }
+
+  handleAdvancedToggle = () => {
+    this.setState(state => (
+      { showAdvanced: !state.showAdvanced }
+    ));
+  }
+
+  handleDifficultyChange = (event) => {
+    const difficulty = event.target.value;
+    this.setState(() => (
+      { difficulty }
     ));
   }
 
@@ -53,20 +70,26 @@ class App extends Component {
   }
 
   handleEncounterSubmit = () => {
-    const { characters, monsterSets } = this.state;
+    const { characters, monsterSets, difficulty, showAdvanced } = this.state;
+
+    const options = {
+      characterLevels: characters,
+      monsterSets: monsterSets,
+      difficulty: showAdvanced ? difficulty : null,
+    };
 
     //TODO: display these errors
     if (!characters.length) {
-      console.error("Party is empty");
+      console.error("Add some characters to the adventuring party.");
       return false;
     }
     if (!monsterSets.length) {
-      console.error("Select some monsters to encounter");
+      console.error("Select some monsters to encounter.");
       return false;
     }
-    api.getEncounter(characters, monsterSets).then((encounter) => {
+    api.getEncounter(options).then((encounter) => {
       if (!encounter.success) {
-        console.error("Encounter api call failed");
+        console.error("Couldn't find an encounter that fit your conditions.");
         return false;
       }
       encounter.id = uuid();
@@ -98,9 +121,11 @@ class App extends Component {
   render() {
     const { 
       characters,
+      difficulty,
       encounterList,
       encounters,
-      selectedMonsterSet
+      selectedMonsterSet,
+      showAdvanced
     } = this.state;
 
     return (
@@ -111,17 +136,44 @@ class App extends Component {
               <header className="app-header">
                 <h1 className="app-title">D&D Encounters</h1>
               </header>
+              <h2 className="heading-text heading-text-large">Party</h2>
               <div className="field">
                 <CharacterSelect 
                   characters={characters} 
                   onChange={this.handleCharacterChange} 
                 />
               </div>
+              <h2 className="heading-text heading-text-large">Monsters</h2>
+              <p>Select a category of monsters from which to draw encounters,
+                or use the advanced options to specify tags and encounter difficulty.</p>
               <div className="field">
                 <MonsterSelect
                   selectedMonsterSet={selectedMonsterSet}
                   onChange={this.handleMonsterChange} />
               </div>
+              <div className="field">
+                <button
+                    className="pure-button"
+                    onClick={this.handleAdvancedToggle}
+                  >
+                  {showAdvanced ? 'Hide' : 'Show'} advanced options
+                </button>
+              </div>
+              <CSSTransition
+                in={showAdvanced}
+                timeout={750}
+                classNames="advanced"
+                unmountOnExit
+              >
+              <div>
+                <h2 className="heading-text heading-text-large">Advanced Options</h2>
+                <div className="field">
+                  <DifficultySelect
+                    selectedDifficulty={difficulty}
+                    onChange={this.handleDifficultyChange} />
+                </div>
+              </div>
+              </CSSTransition>
               <footer className="footer">
                 <button 
                   className="pure-button pure-button-primary" 

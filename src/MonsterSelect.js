@@ -25,8 +25,8 @@ class MonsterSelect extends Component {
     const { selectedMonsterSet } = this.props;
     return (
       <>
-        <label className="field-label" htmlFor="monster-select">
-          Monster Sets
+        <label className="heading-text" htmlFor="monster-select">
+          Monster Set
         </label>
         <Select
           id={"monster-select"}

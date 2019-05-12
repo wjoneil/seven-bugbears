@@ -43,7 +43,9 @@
   }
 }
 
-* {
+/* reset */
+
+*, *:before, *:after {
   box-sizing: border-box;
 }
 
@@ -60,6 +62,58 @@ abbr {
 abbr[title] {
   border-color: var(--mint-green);
 }
+
+/* accessible hidden (read by screen readers) */
+
+.visually-hidden 
+{
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+/* purecss overrides/extensions */
+
+.pure-button-primary {
+  background-color: var(--primary);
+}
+
+.pure-button-hover, .pure-button:focus, .pure-button:hover {
+  background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1));
+}
+
+/* theme-related stuff */
+
+.dnd-spacer {
+  width: 100%;
+  height: 6px;
+  fill: var(--dnd-red);
+  margin: 0.3em 0;
+}
+
+.heading-text {
+  display: block;
+  font-size: 1.05em;
+  font-weight: 500;
+  font-family: var(--serif-font-stack);
+  /* something in the post-processing makes font-variant use all-small-caps */
+  font-feature-settings: "smcp" on;
+  color: var(--heading-color);
+  margin-bottom: 0.2em;
+}
+
+.heading-text.heading-text-large {
+  font-size: 1.3em;
+  width: 100%;
+  border-bottom: 2px solid var(--heading-border-color);
+  padding-bottom: 0.1em;
+  margin-bottom: 1em;
+}
+
+/* form ui */
 
 .encounter-form-wrapper {
   display: flex;
@@ -90,22 +144,8 @@ abbr[title] {
 }
 
 .field {
+  opacity: 1;
   margin-bottom: 20px;
-}
-
-.field-label {
-  font-size: 1.3em;
-  font-weight: 500;
-  font-family: var(--serif-font-stack);
-  /* something in the post-processing makes font-variant use all-small-caps */
-  font-feature-settings: "smcp" on;
-  color: var(--heading-color);
-
-  display: block;
-  width: 100%;
-  border-bottom: 2px solid var(--heading-border-color);
-  padding-bottom: 0.1em;
-  margin-bottom: 0.5em;
 }
 
 .character-select-control {
@@ -121,6 +161,8 @@ abbr[title] {
   justify-content: space-between;
   padding: 10px 0;
 }
+
+/* encounters */
 
 .encounter-list {
   padding: 20px 10px 40px;
@@ -198,6 +240,8 @@ abbr[title] {
   list-style: circle; 
 }
 
+/* treasure formatting */
+
 .encounter-treasure-coins {
   display: flex;
   padding-inline-start: 0;
@@ -242,13 +286,42 @@ abbr[title] {
   background-color: var(--coin-platinum);
 }
 
-.pure-button-primary {
-  background-color: var(--primary);
+/* css transitions styles */
+
+.advanced-enter {
+  opacity: 0;
+  max-height: 0;
+}
+.advanced-enter-active {
+  opacity: 1;
+  max-height: 120px;
+  transition: max-height 500ms ease-out, opacity 500ms 150ms; 
+}
+.advanced-exit {
+  opacity: 1;
+  max-height: 120px;
+}
+.advanced-exit-active {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+  transition: max-height 500ms ease-in 150ms, margin-bottom 500ms ease-in 150ms, opacity 500ms;
 }
 
-.dnd-spacer {
-  width: 100%;
-  height: 6px;
-  fill: var(--dnd-red);
-  margin: 0.3em 0;
+/* radio group styled as buttons */
+
+.hidden-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.difficulty-radio {
+  opacity: 0;
+  position: absolute;
+}
+
+.difficulty-radio:checked + .difficulty-label {
+  background-color: var(--mint-green);
+  color: #fff;
 }
