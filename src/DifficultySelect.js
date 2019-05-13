@@ -7,6 +7,25 @@ const DifficultySelect = ({selectedDifficulty, onChange}) => (
     <div className="pure-button-group">
       <input 
         type="radio"
+        id="difficulty-easy"
+        className="difficulty-radio"
+        name="difficulty"
+        value="easy"
+        checked={selectedDifficulty === "easy"}
+        onChange={onChange}
+      />
+      <label 
+        className={cn(
+          'pure-button', 
+          'difficulty-label',
+          { 'pure-button-active': selectedDifficulty === "easy" }
+        )}
+        htmlFor="difficulty-easy"
+      >
+        Easy
+      </label>
+      <input 
+        type="radio"
         id="difficulty-medium"
         className="difficulty-radio"
         name="difficulty"
@@ -14,7 +33,7 @@ const DifficultySelect = ({selectedDifficulty, onChange}) => (
         checked={selectedDifficulty === "medium"}
         onChange={onChange}
       />
-      <label 
+      <label
         className={cn(
           'pure-button', 
           'difficulty-label',
@@ -23,25 +42,6 @@ const DifficultySelect = ({selectedDifficulty, onChange}) => (
         htmlFor="difficulty-medium"
       >
         Medium
-      </label>
-      <input 
-        type="radio"
-        id="difficulty-difficult"
-        className="difficulty-radio"
-        name="difficulty"
-        value="difficult"
-        checked={selectedDifficulty === "difficult"}
-        onChange={onChange}
-      />
-      <label
-        className={cn(
-          'pure-button', 
-          'difficulty-label',
-          { 'pure-button-active': selectedDifficulty === "difficult" }
-        )}
-        htmlFor="difficulty-difficult"
-      >
-        Difficult
       </label>
       <input 
         type="radio"
