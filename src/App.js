@@ -7,7 +7,7 @@ import DifficultySelect from './DifficultySelect';
 
 import * as api from './api';
 
-import './App.css';
+import './styles/App.scss';
 import EncounterDetails from './EncounterDetails';
 
 const initialState = {
@@ -190,14 +190,16 @@ class App extends Component {
               </footer>
             </div>
           </section>
-          <section className="encounter-list">
-          { !!encounterList.length && encounterList.map(encounterId => (
-            <EncounterDetails 
-              key={encounterId}
-              encounter={encounters[encounterId]} 
-              onClick={this.handleDeleteEncounter(encounterId)}
-            />
-          ))}
+          <section className="encounter-list-wrapper">
+            <div className="encounter-list">
+            { !!encounterList.length && encounterList.map(encounterId => (
+              <EncounterDetails 
+                key={encounterId}
+                encounter={encounters[encounterId]} 
+                onClick={this.handleDeleteEncounter(encounterId)}
+              />
+            ))}
+            </div>
           </section>
         </div>
       </div>

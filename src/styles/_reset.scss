@@ -1,0 +1,31 @@
+@import '_vars.scss';
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+  
+body {
+  color: $text-color;
+  background-color: $page-background;
+  height: 100vh;
+}
+
+abbr {
+  text-decoration: none;
+}
+
+abbr[title] {
+  border-color: $mint-green;
+}
+
+/* accessible hidden (read by screen readers) */
+
+.visually-hidden 
+{
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}

@@ -1,84 +1,10 @@
-:root {
-  --serif-font-stack: Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif;
-
-  --red-black: #241715;
-  --dnd-red: #bc0f0f;
-  --dark-red: #5e1624; /*#49111C;*/
-  --mint-green: #72bda3;
-  --gold: #b38600;
-  --brown: #3b322c;
-  --pale-brown: #b7a99d;
-  --mid-grey: #666666;
-
-  --coin-copper: #cc8251;
-  --coin-silver: #9f9f9f;
-  --coin-electrum: #e2be61;
-  --coin-gold: #c09c2e;
-  --coin-platinum: #a7e2e5;
-
-  --heading-color: var(--dark-red); /*#822000*/
-  --heading-border-color: var(--gold);
-  --subheading-color: var(--mid-grey);
-
-  --form-border: 1px solid var(--pale-brown);
-  --card-border: 1px solid rgba(84, 77, 72, 0.5);/*hsl(0,0%,70%);*/
-  --border-radius: 3px;
-  --shadow: 0 3px 3px rgba(0,0,0, 0.2);
-  --ui-width: 100%;
-  --encounter-list-columns: 1fr;
-
-  --page-background: #ddd;
-  --form-background: #fff;
-  --card-background: #fff;
-  --text-color: #222;
-
-  --primary: var(--red-black);
-
-}
-
-@media only screen and (min-width: 920px) {
-  :root {
-    --ui-width: 520px;
-    --encounter-list-columns: var(--ui-width) var(--ui-width);
-  }
-}
-
-/* reset */
-
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-body {
-  color: var(--text-color);
-  background-color: var(--page-background);
-  height: 100vh;
-}
-
-abbr {
-  text-decoration: none;
-}
-
-abbr[title] {
-  border-color: var(--mint-green);
-}
-
-/* accessible hidden (read by screen readers) */
-
-.visually-hidden 
-{
-  position:absolute;
-  left:-10000px;
-  top:auto;
-  width:1px;
-  height:1px;
-  overflow:hidden;
-}
+@import '_vars.scss';
+@import '_reset.scss';
 
 /* purecss overrides/extensions */
 
 .pure-button-primary {
-  background-color: var(--primary);
+  background-color: $red-black;
 }
 
 .pure-button-hover, .pure-button:focus, .pure-button:hover {
@@ -90,7 +16,7 @@ abbr[title] {
 .dnd-spacer {
   width: 100%;
   height: 6px;
-  fill: var(--dnd-red);
+  fill: $dnd-red;
   margin: 0.3em 0;
 }
 
@@ -98,49 +24,75 @@ abbr[title] {
   display: block;
   font-size: 1.05em;
   font-weight: 500;
-  font-family: var(--serif-font-stack);
+  font-family: $serif-font-stack;
   /* something in the post-processing makes font-variant use all-small-caps */
   font-feature-settings: "smcp" on;
-  color: var(--heading-color);
+  color: $heading-color;
   margin-bottom: 0.2em;
 }
 
 .heading-text.heading-text-large {
   font-size: 1.3em;
   width: 100%;
-  border-bottom: 2px solid var(--heading-border-color);
+  border-bottom: 2px solid $heading-border-color;
   padding-bottom: 0.1em;
   margin-bottom: 1em;
 }
 
+.app-container {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "input"
+    "encounters";
+}
+
+@media only screen and (min-width: $breakpoint) {
+  .app-container {
+    grid-gap: 40px;
+    grid-template-columns: $ui-width auto;
+    grid-template-areas:
+      "input encounters";
+  }
+} 
+
 /* form ui */
 
 .encounter-form-wrapper {
+  grid-area: input;
+
   display: flex;
   justify-content: center;
 
   padding: 20px 30px;
-  background-color: var(--form-background);
+  background-color: $form-background;
 
-  border-bottom: var(--form-border);
-  box-shadow: var(--shadow);
-
-  /* position: -webkit-sticky;
-  position: sticky;
-  top: 0; */
+  border-bottom: $form-border;
+  box-shadow: $shadow;
 }
 
 .encounter-form {
-  width: var(--ui-width);
+  width: $ui-width;
 }
+
+@media only screen and (min-width: $breakpoint) {
+  .encounter-form-wrapper {
+    height: 100vh;
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+} 
 
 .app-title {
   margin: 0;
   margin-bottom: 0.5em;
 
-  font-family: var(--serif-font-stack);
+  font-family: $serif-font-stack;
   font-feature-settings: "smcp" on;
-  color: var(--heading-color);
+  color: $heading-color;
 }
 
 .field {
@@ -164,25 +116,40 @@ abbr[title] {
 
 /* encounters */
 
-.encounter-list {
-  padding: 20px 10px 40px;
+.encounter-list-wrapper {
+  grid-area: encounters;
 
-  display: grid;
-  grid-template-columns: var(--encounter-list-columns);
-  grid-template-rows: auto;
-  justify-content: center;	
-  gap: 15px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.encounter-list {
+  
+  padding: 20px 10px;
+
+  display: flex;
+  flex-direction: column;
+  width: $ui-width;
 
 }
 
 .encounter-details {
   padding: 15px 15px 30px;
-  background-color: var(--card-background);
+  background-color: $card-background;
 
-  border: var(--card-border);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow), inset 0 0 15px 5px #FFFBF4;
+  border: $card-border;
+  border-radius: $border-radius;
+  box-shadow: $shadow, inset 0 0 15px 5px #FFFBF4;
+
+  margin-bottom: 20px;
+  
 }
+
+@media only screen and (min-width: $breakpoint) {
+  .encounter-list-wrapper {
+    justify-content: flex-start;
+  }
+} 
 
 .encounter-details p {
   margin-top: 0.5em;
@@ -205,14 +172,14 @@ abbr[title] {
   flex-grow: 1;
   font-size: 1.8em;
   text-transform: capitalize;
-  font-family: var(--serif-font-stack);
+  font-family: $serif-font-stack;
   font-feature-settings: "smcp" on;
-  color: var(--heading-color);
+  color: $heading-color;
 }
 
 .encounter-subheading {
   margin-bottom: .5em;
-  color: var(--subheading-color);
+  color: $subheading-color;
   font-weight: 100;
   font-size: 1.1em;
 }
@@ -228,7 +195,7 @@ abbr[title] {
   font-size: 1.3em;
   font-weight: 500;
   font-feature-settings: "smcp" on;
-  color: var(--heading-color);
+  color: $heading-color;
 }
 
 .encounter-monsters {
@@ -267,23 +234,23 @@ abbr[title] {
 }
 
 .coin-copper:before {
-  background-color: var(--coin-copper);
+  background-color: $coin-copper;
 }
 
 .coin-silver:before {
-  background-color: var(--coin-silver);
+  background-color: $coin-silver;
 }
 
 .coin-electrum:before {
-  background-color: var(--coin-electrum);
+  background-color: $coin-electrum;
 }
 
 .coin-gold:before {
-  background-color: var(--coin-gold);
+  background-color: $coin-gold;
 }
 
 .coin-platinum:before {
-  background-color: var(--coin-platinum);
+  background-color: $coin-platinum;
 }
 
 /* css transitions styles */
@@ -322,6 +289,6 @@ abbr[title] {
 }
 
 .difficulty-radio:checked + .difficulty-label {
-  background-color: var(--mint-green);
-  color: #fff;
+  background-color: $mint-green;
+  color: $white;
 }

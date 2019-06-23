@@ -1,0 +1,37 @@
+$serif-font-stack: Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif;  
+$red-black: #241715;
+$dnd-red: #bc0f0f;
+$dark-red: #5e1624; 
+$mint-green: #72bda3;
+$gold: #b38600;
+$brown: #3b322c;
+$pale-brown: #b7a99d;
+$mid-grey: #666666;
+$pale-grey: #dddddd;
+$white: #ffffff;
+
+$black-shadow: rgba(0,0,0, 0.2);
+$brown-shadow: rgba(84, 77, 72, 0.5);
+
+$coin-copper: #cc8251;
+$coin-silver: #9f9f9f;
+$coin-electrum: #e2be61;
+$coin-gold: #c09c2e;
+$coin-platinum: #a7e2e5;
+
+$page-background: $pale-grey;
+$form-background: $white;
+$card-background: $white;
+$text-color: #222;
+
+$heading-color: $dark-red; 
+$heading-border-color: $gold;
+$subheading-color: $mid-grey;
+
+$form-border: 1px solid $pale-brown;
+$card-border: 1px solid $brown-shadow;
+$border-radius: 3px;
+$shadow: 0 3px 3px $black-shadow;
+$ui-width: 520px;
+$breakpoint: calc(#{$ui-width} + #{$ui-width} + 40px);
+$encounter-list-columns: 1fr;
